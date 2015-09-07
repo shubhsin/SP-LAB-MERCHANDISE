@@ -1,0 +1,24 @@
+#include<stdio.h>
+main()
+{
+	for(int i = 0;i<10;i++){
+	printf("Hello World");
+	}
+}
+
+
+
+
+
+%{
+	#include"y.tab.h"
+%}
+[a-zA-Z]+	{return VAR;}
+[0-9]+		{return NUM;}
+"#include<stdio.h>"	{return HEADER;}
+"main()"	{return MAIN;}
+"for"		{return FOR;}
+"("		{return OB;}
+")"		{return CB;}
+[\n]		{return '\n';}
+%%

@@ -1,0 +1,17 @@
+%{
+	#include"y.tab.h"
+%}
+%%
+while		{return WHILEKEY;}
+[a-zA-Z]+	{return VAR;}
+[0-9]+		{return NUM;}
+(>)|(<)|(==)|(!=)	{return RELOP;}
+"("	{return OB;}
+")"	{return CB;}
+"{"	{return CO;}
+"}"	{return CC;}
+[\n] 		{return '\n';}
+%%
+
+
+

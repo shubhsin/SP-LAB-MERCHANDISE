@@ -1,0 +1,19 @@
+%{
+#include<stdio.h>
+int num=0,cur=0,prev=0;
+%}
+%%
+[I] {cur=1; if(cur>prev)num+=cur-2*prev; else num+=cur;prev=cur;}
+[V] {cur=5; if(cur>prev)num+=cur-2*prev; else num+=cur;prev=cur;}
+[X] {cur=10; if(cur>prev)num+=cur-2*prev; else num+=cur;prev=cur;}
+[L] {cur=50; if(cur>prev)num+=cur-2*prev; else num+=cur;prev=cur;}
+[C] {cur=100; if(cur>prev)num+=cur-2*prev; else num+=cur;prev=cur;}
+[D] {cur=500; if(cur>prev)num+=cur-2*prev; else num+=cur;prev=cur;}
+[M] {cur=1000; if(cur>prev)num+=cur-2*prev; else num+=cur;prev=cur;}
+# {return;}
+%%
+main(){
+	yylex();
+	printf("The number is: %d\n",num);
+}
+

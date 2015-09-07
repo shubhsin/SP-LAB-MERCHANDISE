@@ -1,0 +1,30 @@
+%{
+	#include"y.tab.h"
+%}
+%%
+[aA]	{return ATYPE;}
+[bB]	{return BTYPE;}
+[\n]	{return '\n';}
+. 	{return;}
+%%
+
+
+
+%{
+	#include<stdio.h>
+%}
+%token ATYPE BTYPE 
+%%
+EXP:EXP2 '\n' {printf("Valid String");exit(0);}
+EXP2: ATYPE EXP2 BTYPE
+| ;
+%%
+main()
+{
+yyparse();
+}
+yyerror()
+{
+printf("Invalid");
+}
+

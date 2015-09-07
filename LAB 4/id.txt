@@ -1,0 +1,27 @@
+%{
+	#include "y.tab.h"
+%}
+%%
+[a-zA-Z] {return LETTR;}
+[0-9] {return DIGIT;}
+[\n] {return ENTER;}
+%%
+
+%{
+	#include<stdio.h>
+%}
+%token LETTR DIGIT ENTER
+%start S
+%%
+S:LETTR EXP ENTER {printf("Valid\n");exit(0);}
+EXP:LETTR EXP|DIGIT EXP| ;
+%%
+main()
+{
+	yyparse();
+}
+yyerror()
+{
+	printf("Invalid");
+}
+

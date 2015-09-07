@@ -1,0 +1,38 @@
+%{
+	#include"y.tab.h"
+%}
+%%
+while		{return WHILEKEY;}
+[a-zA-Z]+	{return VAR;}
+[0-9]+		{return NUM;}
+(>)|(<)|(==)|(!=)	{return RELOP;}
+"("	{return OB;}
+")"	{return CB;}
+"{"	{return CO;}
+"}"	{return CC;}
+[\n] 		{return '\n';}
+%%
+
+
+
+
+%{
+	#include<stdio.h>
+%}
+%token WHILEKEY VAR NUM RELOP OB CB CO CC
+%start S
+%%
+S:EXP'\n' {printf("Valid\n");return 0;}
+EXP:WHILEKEY OB OPT RELOP OPT CB CO CC
+| ;
+OPT:NUM|VAR
+%%
+main()
+{
+	yyparse();
+}
+yyerror()
+{
+	printf("Invalid");
+}
+
